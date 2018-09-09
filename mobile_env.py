@@ -163,9 +163,8 @@ class MobiEnvironment:
         
         r_dissect.append(meanSINR/20)
 
-        r_dissect.append(-0.5*nOut/self.nUE)
+        r_dissect.append(-1 * nOut/self.nUE)
         
-        print r_dissect
         self.state[0] = self.bsLocGrid
         self.state[1:] = self.association_map
 
@@ -211,7 +210,7 @@ class MobiEnvironment:
         
         r_dissect.append(meanSINR/20)
         
-        r_dissect.append(-1* nOut/self.nUE)
+        r_dissect.append(-1 * nOut/self.nUE)
 
         self.state[0] = self.bsLocGrid
         self.state[1:] = self.association_map
