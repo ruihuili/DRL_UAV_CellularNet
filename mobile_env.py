@@ -163,7 +163,7 @@ class MobiEnvironment:
         
         r_dissect.append(meanSINR/20)
 
-        r_dissect.append(-1 * nOut/self.nUE)
+        r_dissect.append(-1.0 * nOut/self.nUE)
         
         self.state[0] = self.bsLocGrid
         self.state[1:] = self.association_map
@@ -186,7 +186,7 @@ class MobiEnvironment:
             done = True
 
         reward = max(sum(r_dissect), -1)
-#        print nHO, " ",nOut," ", r_dissect, " ", reward
+#        print meanSINR, " ",nOut," ", r_dissect, " ", reward
 
 #        info = [r_dissect, self.step_n, self.ueLoc]
         info = [r_dissect, self.step_n]
@@ -210,7 +210,7 @@ class MobiEnvironment:
         
         r_dissect.append(meanSINR/20)
         
-        r_dissect.append(-1 * nOut/self.nUE)
+        r_dissect.append(-1.0 * nOut/self.nUE)
 
         self.state[0] = self.bsLocGrid
         self.state[1:] = self.association_map
