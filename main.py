@@ -257,8 +257,11 @@ class Worker(object):
                         self.buf_r_dissect_all_ep.append(buf_r_dissect)
                         np.save("train/Reward_dissect", self.buf_r_dissect_all_ep)
 
+                    if GLOBAL_EP % 500 == 0:
+                        np.savez("train/Global_A_PARA" + str(GLOBAL_EP), SESS.run(GLOBAL_AC.a_params))
+
                     np.save("train/Global_return",GLOBAL_RUNNING_R)
-                    np.savez("train/A_PARA",SESS.run(self.AC.a_params))
+#                    np.savez("train/A_PARA",SESS.run(self.AC.a_params))
                     np.savez("train/Global_A_PARA",SESS.run(GLOBAL_AC.a_params))
 
                     break
