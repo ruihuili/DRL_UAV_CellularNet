@@ -12,12 +12,14 @@ N_BS = 4
 
 
 def Choose_Act_Gradient(actual_env, s, n_step):
-    #     virtual_env = deepcopy(actual_env)
-    #     s_, r, done, info = virtual_env.step_test(i_act, False)
-    #     current_BS = virtual_env.channel.current_BS
-    current_BS_sinr = actual_env.channel.current_BS_sinr
-    bs_loc = actual_env.bsLoc
-    ue_loc = actual_env.ueLoc
+    virtual_env = deepcopy(actual_env)
+    #BS remains but UE moves
+    _, _, _, _ = virtual_env.step_test(624, False)
+#    print np.equal(virtual_env.bsLoc, actual_env.bsLoc), virtual_env.bsLoc,"\n", actual_env.bsLoc,"\n"
+
+    current_BS_sinr = virtual_env.channel.current_BS_sinr
+    bs_loc = virtual_env.bsLoc
+    ue_loc = virtual_env.ueLoc
     
     act_all_bs = np.zeros((len(bs_loc)))
     
