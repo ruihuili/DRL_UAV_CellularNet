@@ -2,9 +2,12 @@ import time
 TEST_ALGO = "A3C"
 
 FILE_NAME_APPEND = "2000"
-OUTPUT_FILE_NAME = "test/" + FILE_NAME_APPEND
+OUTPUT_FILE_NAME = "test/" + FILE_NAME_APPEND + '_'
 
 def Load_AC_Net():
+    """
+    Load pre-trained A3C model for testing
+    """
     file_name = "train/Global_A_PARA" + FILE_NAME_APPEND +".npz"
     files = np.load(file_name)
 
@@ -18,6 +21,9 @@ def Load_AC_Net():
     return G_AC_TEST
 
 def Load_DPPO_Net():
+    """
+    Load pre-trained DDPO model for testing
+    """
 
     file_name = "test/PI_PARA" + FILE_NAME_APPEND +".npz"
     files = np.load(file_name)
@@ -32,13 +38,13 @@ def Load_DPPO_Net():
     return G_PPO_TEST
 
 def Run_Test(g_test_net, reward_file_name):
+    #maximum training step
     MAX_STEP = 10000
-    #if reading mobility trace from file
-    test_env = MobiEnvironment(N_BS, 40, 100, "read_trace", "./ue_trace_10k.npy")
-    #if producing mobility trace
-#    test_env = MobiEnvironment(N_BS, 40, 100, "group")
-    # test_env.plot_sinr_map()
 
+    #Reading mobility trace from file
+    test_env = MobiEnvironment(N_BS, 40, 100, "read_trace", "./ue_trace_10k.npy")
+
+    #reset states
     s = np.array([np.ravel(test_env.reset())])
 
     done = False
@@ -70,10 +76,10 @@ def Run_Test(g_test_net, reward_file_name):
 	    np.save(reward_file_name + "time", time_all)
 #            np.save("ue_trace_10k", ue_walk_trace)
 
-        if step % 5 == 0:
-            np.save(reward_file_name +"ue_loc" + str(step), test_env.ueLoc)
-            np.save(reward_file_name +"sinr_map" + str(step), test_env.sinr_map)
-            np.save(reward_file_name +"assoc_sinr" + str(step), test_env.assoc_sinr)
+        #if step % 5 == 0:
+            #np.save(reward_file_name +"ue_loc" + str(step), test_env.ueLoc)
+            #np.save(reward_file_name +"sinr_map" + str(step), test_env.sinr_map)
+            #np.save(reward_file_name +"assoc_sinr" + str(step), test_env.assoc_sinr)
         # reset the environment every 2000 steps
         if step % 2000 == 0:
             s = np.array([np.ravel(test_env.reset())])
@@ -88,7 +94,6 @@ def Run_Test(g_test_net, reward_file_name):
     np.save(reward_file_name + "reward", reward_buf)
     np.save(reward_file_name + "sinr",sinr_all)
     np.save(reward_file_name + "time", time_all)
-#    print np.shape(ue_walk_trace)
 #    np.save("ue_trace_10k", ue_walk_trace)
 
 if __name__ == "__main__":

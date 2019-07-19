@@ -1,4 +1,4 @@
-# Python code for 2D random walk.
+# Python code for 2D random walk, fixed direction, and group reference point mobility model.
 import numpy as np
 import pylab
 import random

@@ -6,7 +6,7 @@ import time
 from itertools import product
 
 FILE_NAME_APPEND = ""
-OUTPUT_DIR = "test/"
+OUTPUT_DIR = "gradient/"
 OUTPUT_FILE_NAME = OUTPUT_DIR + "reward" + FILE_NAME_APPEND
 N_BS = 4
 
@@ -39,7 +39,7 @@ def Choose_Act_Gradient(actual_env, s, n_step):
 def Run_Test(reward_file_name):
     MAX_STEP = 10000
     #if reading mobility trace from file
-    test_env = MobiEnvironment(N_BS, 40, 100, "read_trace", "../ue_trace_10k.npy")
+    test_env = MobiEnvironment(N_BS, 40, 100, "read_trace", "./ue_trace_10k.npy")
     
     s = np.array([np.ravel(test_env.reset())])
     
