@@ -2,12 +2,14 @@ import numpy as np
 import math
 from IPython import display
 from sinr_visualisation import *
-# channel model
 
-WATCH_WINDOW = 200
-OUT_THRESH = 0
+WATCH_WINDOW = 200 # used for visualisation only 
+OUT_THRESH = 0 # DL SINR below this value is considered to be user outage
 
 class LTEChannel:
+    """
+    LTE channel class including simulation of LTE downlink and uplink channels 
+    """
     def __init__(self, nUE, nBS, boundaries, init_ueLoc, init_bsLoc):
         
         [self.xMin, self.xMax, self.yMin, self.yMax] = boundaries
@@ -196,11 +198,7 @@ class LTEChannel:
             ulSinr = np.array(ulSinr)
             ulNumChannelNeeded = np.array(ulNumChannelNeeded)
             ulRateUEBS = np.array(ulRateUEBS)
-        #        print "UL SINR \n", ulSinr
-        #        print "UL needed channels \n", ulNumChannelNeeded
-        #        print "UL rate UE per BS \n", ulRateUEBS
 
-        #        UL DL rate from current BS
             dlRatePerChannel_from_currentBS = np.zeros((self.nUE))
             ulRatePerChannel_from_currentBS = np.zeros((self.nUE))
             for ue_id in range(self.nUE):
