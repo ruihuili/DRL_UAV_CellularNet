@@ -1,4 +1,4 @@
-# Mobility
+# Overview 
 Simulation scripts for the mobility management of UAV base stations project mainly built for paper https://dl.acm.org/citation.cfm?id=3308964. 
 
 # Requirements  
@@ -16,6 +16,14 @@ Simulation scripts for the mobility management of UAV base stations project main
   - there is a pair of global AC nets and local AC nets for worker. Workers train their own nets individually while push the gradients to the global nets periodically, then the global nets optimise uploaded gradients from all workers and distribute the same optimal gradients to all workers.  
   - choices of CNN and MLP are implimented. Default MLP nets perform as well as CNN in prior work with less training complexity  
   
+  
+* main_test.py    
+  - load trained model to test (taking input AC model from ./train/Global_A_PARA%.npy where % can be the training step, 2000 by default)  
+  - test is done on controlled UE mobility trace by loading a file ./ue_trace_10k.npy  
+  - at each test step, the output of nn is argmax-ed to make control decisions of UAV movements   
+  - per step reward, SINR, and computation time are recorded for performance evaluation (output to ./test)  
+  
+  
 * mobile_env.py  
   - followed openAI's gym implementation structure for a wireless mobile environment   
   - creates a LTE wireless channel which provides computation of SINR values and handover functionality   
@@ -28,15 +36,12 @@ Simulation scripts for the mobility management of UAV base stations project main
   - downlink and uplink SINR    
   - In the WAIN work we take only downlink sinr  
 
-* ue_mobility.py 
+* ue_mobility.py  
   - a couple of mobility models for UE's movement  
   - group reference (X. Hong et al. 1999. A group mobility model for ad hoc wireless networks. In ACM MSWiM. 53–60.) model is used in the WAIN paper. please check the WAIN paper for more details    
 
-* main_test.py    
-  - load trained model to test (taking input AC model from ./train/Global_A_PARA%.npy where % can be the training step, 2000 by default)  
-  - test is done on controlled ue mobility trace by loading a file ./ue_trace_10k.npy  
-  - at each test step, the output of nn is argmax-ed to make control decisions of UAV movements   
-  - per step reward, SINR, and computation time are recorded for performance evaluation (output to ./test)  
+* sinr_visualisation.py  
+  - utility functions for visualisation during the simulations  
 
 # Build virtual environment  
 ` virtualenv env  `  
@@ -49,3 +54,6 @@ Simulation scripts for the mobility management of UAV base stations project main
 # Run testing
 ` mkdir test `    
 ` python main_test.py `
+
+### Email lirui628@gmail for any questions
+### Have fun :squirrel:
