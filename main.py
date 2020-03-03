@@ -5,11 +5,16 @@ import numpy as np
 #import gym
 import os
 import shutil
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from mobile_env import *
 import time
 
 #matplotlib.use('Agg')
+
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument('-seed', type=int, default=6)
+args = parser.parse_args()
 
 OUTPUT_GRAPH = True
 LOG_DIR = './log'
@@ -23,7 +28,7 @@ LR_A = 0.0001    # learning rate for actor
 LR_C = 0.0001    # learning rate for critic
 GLOBAL_RUNNING_R = []
 GLOBAL_EP = 0
-TENSOR_SEED = 6
+TENSOR_SEED= args.seed
 CNN_NUM_FILTERS = 10
 CNN_KERNEL_SIZE = 5
 

@@ -1,7 +1,7 @@
 import numpy as np
 import math
 from IPython import display
-from sinr_visualisation import *
+#from sinr_visualisation import *
 
 WATCH_WINDOW = 200 # used for visualisation only 
 OUT_THRESH = 0 # DL SINR below this value is considered to be user outage

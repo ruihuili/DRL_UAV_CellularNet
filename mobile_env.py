@@ -11,7 +11,7 @@ import copy
 import numpy as np
 import sys
 
-matplotlib.rcParams.update({'font.size': 14})
+#matplotlib.rcParams.update({'font.size': 14})
 
 # defining the number of steps
 MAXSTEP = 2000
